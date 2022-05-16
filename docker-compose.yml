@@ -6,3 +6,10 @@ services:
       context: .
     env_file: .env
     restart: unless-stopped
+  redis:
+    # container_name: redis
+    image: redis:7.0
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - ./.docker_data/redis:/data
