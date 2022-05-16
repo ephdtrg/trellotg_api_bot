@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   bot:
+    image: "ghcr.io/ephdtrg/trellotg_api_bot:latest"
     build:
       context: .
     env_file: .env
