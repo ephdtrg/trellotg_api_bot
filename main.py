@@ -62,7 +62,12 @@ def add_to_trello(message: telebot.types.Message):
         bot.reply_to(message, "No pending messages in db")
         return
 
-    trello_title = message.text.split(' ', maxsplit=1)[1]
+    command_msg_text = message.text.split(' ', maxsplit=1)
+    if len(command_msg_text) < 2:
+        bot.reply_to(message, "Title is required")
+        return
+
+    trello_title = command_msg_text[1]
     trello_response = send_to_trello_api(trello_title, saved_msg)
     bot.reply_to(message, f"Messages sent to Trello \n {trello_response.get('url')}")
 
